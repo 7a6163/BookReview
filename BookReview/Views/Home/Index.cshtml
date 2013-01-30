@@ -1,6 +1,7 @@
 ﻿@{
-    ViewBag.Title = "首頁";
+    ViewBag.Title = "aNobii";
 }
+@*
 @section featured {
     <section class="featured">
         <div class="content-wrapper">
@@ -42,4 +43,445 @@
         Web 裝載公司。
         <a href="http://go.microsoft.com/fwlink/?LinkId=245157">進一步了解...</a>
     </li>
-</ol>
+</ol>*@
+
+
+@*<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
+<head>*@
+@section head
+{
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="shortcut icon" href="http://static.anobii.com/favicon.ico" />
+
+    <link rel="stylesheet" type="text/css" href="http://static.anobii.com/anobii/static/landing/css/reset.css?2013012301" />
+    <link rel="stylesheet" type="text/css" href="http://static.anobii.com/anobii/static/landing/css/landing.css?2013012301" />
+    <link rel="stylesheet" type="text/css" href="http://static.anobii.com/anobii/static/landing/css/jquery.autocomplete.css?2013012301" />
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+    <script type="text/javascript" src="http://static.anobii.com/anobii/static/landing/js/jquery.autocomplete.js?2013012301"></script>
+
+    <script type="text/javascript">
+        var $j = jQuery.noConflict();
+
+        $j(document).ready(function () {
+            /*
+             * search autocomplete
+             * 
+             * @@author Johnson
+             * @@version 2010-12-20 14:50PM +8
+            */
+            $j('#search_input_box').each(function () {
+                $j(this).autocomplete('/NewaNobii/aNobiiSearch/live/search-suggest/complete',
+                {
+                    minChars: 3,
+                    max: 10
+                }).result(function (event, keyword) {
+                    var keyword = encodeURI(keyword);
+                    location.href = '/search?keyword=' + keyword;
+                });
+
+                var defaultValue = this.value;
+
+                $j(this).focus(function () {
+                    if (this.value == defaultValue) {
+                        this.value = '';
+                    }
+                });
+                $j(this).blur(function () {
+                    if (this.value == '') {
+                        this.value = defaultValue;
+                    }
+                });
+                $j(this).keypress(function (e) {
+                    if (e.which == 13) {
+                        var keyword = $j("#search_input_box").val();
+
+                        keyword = encodeURI(keyword);
+                        location.href = '/search?keyword=' + keyword;
+                    }
+                });
+            });
+
+            $j("#btn_search").click(function () {
+                var keyword = $j("#search_input_box").val();
+
+                keyword = encodeURI(keyword);
+                location.href = '/search?keyword=' + keyword;
+            });
+        });
+    </script>
+
+    <!--[if IE 6]>
+ <script src="http://static.anobii.com/anobii/static/landing/js/DD_belatedPNG.js?2013012301"></script>
+ <script>
+   DD_belatedPNG.fix('.png_bg');
+ </script>
+ <![endif]-->
+}
+@*</head>*@
+
+<body>
+
+
+    <div id="wrap">
+
+        <!-- Varian -->
+        <script type="text/javascript">
+            var FBButtonClick = false;
+        </script>
+        <script src="http://static.anobii.com/anobii/static/js/jquery.facebook.js?2011122002" type="text/javascript"></script>
+        <!-- End Varian -->
+
+        <div id="header">
+            <div id="header_logo" class="png_bg">
+                <a href="http://www.anobii.com">aNobii</a>
+            </div>
+
+            <div id="login" class="clearfix">
+                <div id="login_anobii" class="png_bg">
+                    <a href="https://www.anobii.com/login">登錄</a>
+                    | 
+   <a href="https://www.anobii.com/sign_up">註冊帳號</a>
+                </div>
+
+                <div id="login_facebook" class="png_bg"></div>
+
+            </div>
+
+            <script type="text/javascript">
+                $j(document).ready(function () {
+                    $j(window).bind('facebook.user.session', user);
+
+                    function user() {
+                        if (FBButtonClick) {
+                            if ($j.facebook.user.uid != '') {
+                                $j.ajax({
+                                    url: '/NewaNobii/aNobiiHome/live/account/facebook-connect',
+                                    success: function (data) {
+                                        if (data == '1') {
+                                            location.href = '/home';
+                                        } else {
+                                            location.href = '/sign_up';
+                                        }
+                                    }
+                                });
+                            }
+                        }
+                    }
+
+                    $j.facebook();
+                    $j('#login_facebook').facebook();
+                    $j('#login_facebook').facebook('show');
+                });
+
+            </script>
+
+            <div id="tagline">
+                <h2 id="tagline_title">Together we find better books</h2>
+            </div>
+
+        </div>
+        <!-- banner -->
+        <div id="banner">
+            <div id="banner_shelve" class="png_bg">
+                書櫃 
+            </div>
+            <div id="banner_find" class="png_bg">
+                尋找 
+            </div>
+            <div id="banner_share" class="png_bg">
+                分享 
+            </div>
+            <div id="banner_text">
+                <div class="banner_text_container">
+                    <h3 class="banner_text_title">書櫃    </h3>
+                    <h4 class="banner_text_content">放上書櫃並展示您的藏書    </h4>
+                </div>
+                <div class="banner_text_container">
+                    <h3 class="banner_text_title">尋找    </h3>
+                    <h4 class="banner_text_content">藉由 aNobii 社群的協助，找尋您的下一本書籍    </h4>
+                </div>
+                <div class="banner_text_container">
+                    <h3 class="banner_text_title">分享    </h3>
+                    <h4 class="banner_text_content">評分並評論您的藏書，並在 Facebook 與 Twitter 上分享給大家    </h4>
+                </div>
+            </div>
+        </div>
+
+        <!-- search -->
+        <div id="search">
+            <div id="search_input">
+                <input type="text" id="search_input_box" name="" value="您現在正在閱讀哪本書？" />
+                <a href="#" id="btn_search">搜尋</a>
+            </div>
+        </div>
+        <!-- content -->
+        <div id="content">
+            <!-- content : recent activity -->
+            <div id="content_activity">
+                <h2 class="content_title">近期活動   </h2>
+
+                <ul id="col_first" class="content_activity_col">
+                    <li class="content_activity_event">
+                        <div class="content_activity_book">
+                            <a href="/books/精實創業/9789868823631/011b02ced0f0479683/">
+                                <img src="http://image.anobii.com/anobi/image_book.php?type=1&item_id=011b02ced0f0479683&time=1338180214" /></a>
+                        </div>
+                        <div class="content_activity_action">
+                            <span class='translatable' lang='{&lt;a href=&quot;{[person url]}&quot;&gt;}{[person name]}{&lt;/a&gt;} added {&lt;a href=&quot;{[book url]}&quot;&gt;}{[book]}{&lt;/a&gt;} to shelf.'><a href="/netivism/books">NETivism</a>在書架上新增了<a href="/books/精實創業/9789868823631/011b02ced0f0479683/">精實創業</a></span>
+                            <div class="content_activity_time">
+                                <span class='translatable' lang='{[total]} minutes ago'>15 分鐘前</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="content_activity_event">
+                        <div class="content_activity_book">
+                            <a href="/books/誰是第一名/9789576429293/01b998ceb8e2ca5fad/">
+                                <img src="http://image.anobii.com/anobi/image_book.php?type=1&item_id=01b998ceb8e2ca5fad&time=1248144378" /></a>
+                        </div>
+                        <div class="content_activity_action">
+                            <span class='translatable' lang='{&lt;a href=&quot;{[person url]}&quot;&gt;}{[person name]}{&lt;/a&gt;} added {&lt;a href=&quot;{[book url]}&quot;&gt;}{[book]}{&lt;/a&gt;} to shelf.'><a href="/fionabobo/books">Fiona</a>在書架上新增了<a href="/books/誰是第一名/9789576429293/01b998ceb8e2ca5fad/">誰是第一名</a></span>
+                            <div class="content_activity_time">
+                                <span class='translatable' lang='{[total]} minutes ago'>16 分鐘前</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="content_activity_event">
+                        <div class="content_activity_book">
+                            <a href="/books/公羊的盛宴/9789570838374/01a1652bca0da7264f/">
+                                <img src="http://image.anobii.com/anobi/image_book.php?type=1&item_id=01a1652bca0da7264f&time=1311693010" /></a>
+                        </div>
+                        <div class="content_activity_action">
+                            <span class='translatable' lang='{&lt;a href=&quot;{[person url]}&quot;&gt;}{[person name]}{&lt;/a&gt;} added {&lt;a href=&quot;{[book url]}&quot;&gt;}{[book]}{&lt;/a&gt;} to shelf.'><a href="/plover/books">Plover</a>在書架上新增了<a href="/books/公羊的盛宴/9789570838374/01a1652bca0da7264f/">公羊的盛宴</a></span>
+                            <div class="content_activity_time">
+                                <span class='translatable' lang='{[total]} minutes ago'>20 分鐘前</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="content_activity_event last">
+                        <div class="content_activity_book">
+                            <a href="/books/那年，菸田裡：斗笠、洋巾、花布衫/9789868557017/014541daab541ba523/">
+                                <img src="http://image.anobii.com/anobi/image_book.php?type=1&item_id=014541daab541ba523&time=1257478214" /></a>
+                        </div>
+                        <div class="content_activity_action">
+                            <span class='translatable' lang='{&lt;a href=&quot;{[person url]}&quot;&gt;}{[person name]}{&lt;/a&gt;} added {&lt;a href=&quot;{[book url]}&quot;&gt;}{[book]}{&lt;/a&gt;} to shelf.'><a href="/0144ce0f07b6c026fe/books">Ziyu</a>在書架上新增了<a href="/books/那年，菸田裡：斗笠、洋巾、花布衫/9789868557017/014541daab541ba523/">那年，菸田裡：斗笠、洋巾、花布衫</a></span>
+                            <div class="content_activity_time">
+                                <span class='translatable' lang='{[total]} minutes ago'>20 分鐘前</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+                <ul id="col_second" class="content_activity_col">
+                    <li class="content_activity_event">
+                        <div class="content_activity_book">
+                            <a href="/books/我們的幸福時光/9789861738468/016d225ca1b603b208/">
+                                <img src="http://image.anobii.com/anobi/image_book.php?type=1&item_id=016d225ca1b603b208&time=1358536449" /></a>
+                        </div>
+                        <div class="content_activity_action">
+                            <span class='translatable' lang='{&lt;a href=&quot;{[person url]}&quot;&gt;}{[person name]}{&lt;/a&gt;} added {&lt;a href=&quot;{[book url]}&quot;&gt;}{[book]}{&lt;/a&gt;} to shelf.'><a href="/charliecatread/books">Charliecat9 </a>在書架上新增了<a href="/books/我們的幸福時光/9789861738468/016d225ca1b603b208/">我們的幸福時光</a></span>
+                            <div class="content_activity_time">
+                                <span class='translatable' lang='{[total]} minutes ago'>20 分鐘前</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="content_activity_event">
+                        <div class="content_activity_book">
+                            <a href="/books/小星星/9789868870017/01f2ab7430225426f4/">
+                                <img src="http://image.anobii.com/anobi/image_book.php?type=1&item_id=01f2ab7430225426f4&time=1358695401" /></a>
+                        </div>
+                        <div class="content_activity_action">
+                            <span class='translatable' lang='{&lt;a href=&quot;{[person url]}&quot;&gt;}{[person name]}{&lt;/a&gt;} added {&lt;a href=&quot;{[book url]}&quot;&gt;}{[book]}{&lt;/a&gt;} to shelf.'><a href="/015ab575019cf203ad/books">Dollyhung2001 </a>在書架上新增了<a href="/books/小星星/9789868870017/01f2ab7430225426f4/">小星星</a></span>
+                            <div class="content_activity_time">
+                                <span class='translatable' lang='{[total]} minutes ago'>21 分鐘前</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="content_activity_event">
+                        <div class="content_activity_book">
+                            <a href="/books/沒有神的所在/9789573325567/0141adc20883d6c13b/">
+                                <img src="http://image.anobii.com/anobi/image_book.php?type=1&item_id=0141adc20883d6c13b&time=1245083587" /></a>
+                        </div>
+                        <div class="content_activity_action">
+                            <span class='translatable' lang='{&lt;a href=&quot;{[person url]}&quot;&gt;}{[person name]}{&lt;/a&gt;} added {&lt;a href=&quot;{[book url]}&quot;&gt;}{[book]}{&lt;/a&gt;} to shelf.'><a href="/p9717041/books">Volvo</a>在書架上新增了<a href="/books/沒有神的所在/9789573325567/0141adc20883d6c13b/">沒有神的所在</a></span>
+                            <div class="content_activity_time">
+                                <span class='translatable' lang='{[total]} minutes ago'>22 分鐘前</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="content_activity_event last">
+                        <div class="content_activity_book">
+                            <a href="/books/麥田捕手/9789861209401/018df47ee8dd26ce48/">
+                                <img src="http://image.anobii.com/anobi/image_book.php?type=1&item_id=018df47ee8dd26ce48&time=1317660575" /></a>
+                        </div>
+                        <div class="content_activity_action">
+                            <span class='translatable' lang='{&lt;a href=&quot;{[person url]}&quot;&gt;}{[person name]}{&lt;/a&gt;} added {&lt;a href=&quot;{[book url]}&quot;&gt;}{[book]}{&lt;/a&gt;} to shelf.'><a href="/013d64363d116f82ee/books">人傑</a>在書架上新增了<a href="/books/麥田捕手/9789861209401/018df47ee8dd26ce48/">麥田捕手</a></span>
+                            <div class="content_activity_time">
+                                <span class='translatable' lang='{[total]} minutes ago'>25 分鐘前</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- content : aNobii apps -->
+            <div id="content_app">
+                <div class="content_banner">
+                    <a href="/iphoneapp" target="_blank">
+                        <img src="http://static.anobii.com/anobii/static/landing/images/banner_iphoneapp.png?2013012301"></a>
+                </div>
+
+                <h2 class="content_title">aNobii 應用程式   </h2>
+
+                <ul class="content_app_list">
+                    <li class="content_app_opton">
+                        <a href="/iphoneapp" class="first">
+                            <div id="app_iphone" class="png_bg">iPhone</div>
+                        </a>
+                    </li>
+                    <li class="content_app_opton">
+                        <a href="/androidapp" class="first">
+                            <div id="app_android" class="png_bg">android</div>
+                        </a>
+                    </li>
+                    <li class="content_app_explain">
+                        <div id="icon_barcode"></div>
+                        <div class="content_app_explain_wrap">
+                            <div class="content_app_explain_text">
+                                <p>
+                                    掃描任一條碼來建立您的虛擬書櫃，並了解每個人對您藏書的看法	  
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- footer -->
+
+        <!-- footer -->
+        <div id="footer">
+            <ul id="footer_links">
+                <li class="footer_item">
+                    <a href="http://twitter.com/anobii" id="footer_twitter">Twitter</a>
+                </li>
+                <li class="footer_item">
+                    <a href="http://www.facebook.com/aNobii" id="footer_facebook">Facebook</a>
+                </li>
+                <li class="footer_item">
+                    <a href="http://www.anobii.com/about">關於</a>
+                </li>
+                <li class="footer_item">
+                    <a href="http://www.anobii.com/translate_home">翻譯</a>
+                </li>
+                <li class="footer_item">
+                    <a href="http://www.anobii.com/api_home">開發者</a>
+                </li>
+                <li class="footer_item">
+                    <a href="http://blog.anobii.com/">Blog</a>
+                </li>
+                <li class="footer_item">
+                    <a href="http://www.anobii.com/help">說明</a>
+                </li>
+                <li class="footer_item">
+                    <a href="/terms_of_service">條款</a>
+                </li>
+                <li class="footer_item">
+                    <a href="/privacy">私隱</a>
+                </li>
+                <li class="footer_item">
+                    <a href="/jobs">工作</a>
+                </li>
+                <li class="footer_item">
+                    <a href="http://www.anobii.com/contact" class="last">聯絡</a>
+                </li>
+                <li class="footer_item_right">&copy; 2013 aNobii
+   <select id="language_select" class="language_reselect" title="http://www.anobii.com/">
+       <option value="1">English</option>
+       <option value="2" selected="selected">繁體中文</option>
+       <option value="3">简体中文</option>
+       <option value="4">日本語</option>
+       <option value="5">Français</option>
+       <option value="6">Deutsch</option>
+       <option value="7">Español</option>
+       <option value="8">Português</option>
+       <option value="9">한국어</option>
+       <option value="10">Català</option>
+       <option value="11">Italiano</option>
+       <option value="13">РУССКИЙ</option>
+       <option value="14">Nederlands</option>
+       <option value="19">Svenska</option>
+       <option value="22">Galego</option>
+       <option value="23">Ελληνικά</option>
+       <option value="26">Esperanto</option>
+   </select>
+
+                </li>
+            </ul>
+        </div>
+
+        <script type="text/javascript">
+            $j(document).ready(function () {
+                /*
+                 * change interface language
+                 * 
+                 * @@author Johnson
+                 * @@version 2011-01-19 11:45AM +8
+                */
+                $j(".language_reselect").change(function () {
+                    var language = $j(".language_reselect").val();
+                    var url = $j(this).attr("title");
+
+                    $j.ajax({
+                        url: "/language_change?lang=" + language, success: function (result) {
+                            location.href = url;
+                        }
+                    });
+                });
+            });
+        </script>
+</body>
+
+
+<script type="text/javascript" language="javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setCustomVar', 1, 'Part', "aNobiiHome", 3]);
+    _gaq.push(['_setCustomVar', 2, 'LoginStatus', "Logged in", 3]);
+    _gaq.push(['_setCustomVar', 3, 'Age', "Anonymous", 1]);
+    _gaq.push(['_setCustomVar', 4, 'Gender', "Anonymous", 1]);
+    _gaq.push(['_setCustomVar', 5, 'RelationshipStatus', "Anonymous", 1]);
+
+    _gaq.splice(0, 0, ['_setAccount', 'UA-199982-1']);
+    _gaq.splice(1, 0, ['_setDomainName', '.anobii.com']);
+    _gaq.splice(2, 0, ['_setAllowHash', 'false']);
+
+    _gaq.push(['_trackPageview', "/landing page"]);
+
+    (function () {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+    })();
+
+
+    var _sf_async_config = { uid: 14939, domain: "anobii.com" };
+    (function () {
+        function loadChartbeat() {
+            window._sf_endpt = (new Date()).getTime();
+            var e = document.createElement('script');
+            e.setAttribute('language', 'javascript');
+            e.setAttribute('type', 'text/javascript');
+            e.setAttribute('src',
+               (("https:" == document.location.protocol) ? "https://s3.amazonaws.com/" : "http://") +
+               "static.chartbeat.com/js/chartbeat.js");
+            document.body.appendChild(e);
+        }
+        var oldonload = window.onload;
+        window.onload = (typeof window.onload != 'function') ?
+            loadChartbeat : function () { oldonload(); loadChartbeat(); };
+    })();
+
+</script>
+</html>
