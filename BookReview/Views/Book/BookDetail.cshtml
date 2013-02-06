@@ -1,0 +1,17 @@
+﻿@model BookReview.Models.ViewModels.BookBookDetail
+@{
+    ViewBag.Title = "BookDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>BookDetail</h2>
+
+@Html.LabelFor(m => m.Name)
+@Html.DisplayTextFor(m => m.Name)
+@Html.LabelFor(m => m.Author)
+@Html.DisplayTextFor(m => m.Author)
+@Html.LabelFor(m => m.Publisher)
+@Html.DisplayTextFor(m => m.Publisher)
+@Html.LabelFor(m => m.PublishDate)
+@Html.DisplayTextFor(m => m.PublishDate)
+

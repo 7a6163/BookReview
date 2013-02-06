@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using BookReview.Models.ViewModels;
+using Domain;
 using DotNetOpenAuth.AspNet;
 using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
@@ -47,16 +48,27 @@ namespace BookReview.Controllers
         }
 
         //
-        // POST: /Account/LogOff
+        // Get: /Account/LogOff
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpGet]
         public ActionResult LogOff()
         {
             WebSecurity.Logout();
 
             return RedirectToAction("Index", "Home");
         }
+
+        ////
+        //// POST: /Account/LogOff
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult LogOff()
+        //{
+        //    WebSecurity.Logout();
+
+        //    return RedirectToAction("Index", "Home");
+        //}
 
         //
         // GET: /Account/Register

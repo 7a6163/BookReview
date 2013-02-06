@@ -7,7 +7,7 @@ namespace BookReview.Models.TemplateModels
 {
     public class BookBox
     {
-        public string Id { get; set; }
+        public Guid Id { get; set; }
         public string Name { get; set; }
         public string Author { get; set; }
         public string Publisher { get; set; }

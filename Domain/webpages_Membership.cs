@@ -9,7 +9,7 @@
 
 using System.ComponentModel.DataAnnotations;
 
-namespace BookReview.Models
+namespace Domain
 {
     using System;
     using System.Collections.Generic;

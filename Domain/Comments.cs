@@ -7,24 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System.ComponentModel.DataAnnotations;
-
-namespace BookReview.Models
+namespace Domain
 {
     using System;
     using System.Collections.Generic;
-
-    public partial class webpages_Roles
+    
+    public partial class Comments
     {
-        public webpages_Roles()
-        {
-            this.UserProfile = new HashSet<UserProfile>();
-        }
-
-        [Key]
-        public int RoleId { get; set; }
-        public string RoleName { get; set; }
-
-        public virtual ICollection<UserProfile> UserProfile { get; set; }
+        public System.Guid Id { get; set; }
+        public System.Guid BookId { get; set; }
+        public Nullable<int> CreaterId { get; set; }
+        public string Creater { get; set; }
+        public string Content { get; set; }
+        public System.DateTime CreateDate { get; set; }
+        public string IsEnable { get; set; }
     }
 }

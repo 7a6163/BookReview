@@ -6,8 +6,11 @@ using BookReview.Models.TemplateModels;
 
 namespace BookReview.Models.ViewModels
 {
-    public class HomeIndex
+    public class BookModels
     {
-        public List<BookBox> listBookBox { get; set; }
+    }
+
+    public class BookBookDetail : BookBox
+    {
     }
 }

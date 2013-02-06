@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using BookReview.Models;
+using Domain;
 using BookReview.Models.TemplateModels;
 using BookReview.Models.ViewModels;
 
@@ -11,7 +11,7 @@ namespace BookReview.Controllers
 {
     public class HomeController : Controller
     {
-        BookEntities bookEntities = new BookEntities();
+        private readonly BookEntities _bookEntities = new BookEntities();
 
         public ActionResult Index()
         {
@@ -34,18 +34,20 @@ namespace BookReview.Controllers
             //}
             //bookEntities.SaveChanges();
 
-            IndexModel indexModel = new IndexModel();
-            var books = bookEntities.Books;
-            var qlistBookBox = from b in books
-                          select new BookBox()
-                              {
-                                  Name = b.Name,
-                                  Author = b.Author,
-                                  Publisher = b.Publisher,
-                                  PublishDate = (DateTime) b.PublishDate
-                              };
-            indexModel.listBookBox = qlistBookBox.ToList();
-            return View(indexModel);
+            HomeIndex model = new HomeIndex();
+            var books = _bookEntities.Books;
+            var qlistBookBox = (from b in books
+                                orderby b.UpdateDate descending
+                                select new BookBox()
+                                    {
+                                        Id = b.Id,
+                                        Name = b.Name,
+                                        Author = b.Author,
+                                        Publisher = b.Publisher,
+                                        PublishDate = (DateTime)b.PublishDate
+                                    }).Take(10);
+            model.listBookBox = qlistBookBox.ToList();
+            return View(model);
         }
 
         public ActionResult About()

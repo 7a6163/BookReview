@@ -180,62 +180,18 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewModels\AccountModels.cs" />
-    <Compile Include="Models\Books.cs">
-      <DependentUpon>BooksModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\BooksModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BooksModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\BooksModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BooksModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\BooksModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BooksModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Comments.cs">
-      <DependentUpon>BooksModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\MainModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MainModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\MainModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MainModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\MainModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MainModel.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\TemplateModels\BookBox.cs" />
-    <Compile Include="Models\UserProfile.cs">
-      <DependentUpon>MainModel.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\ViewModels\BookModels.cs" />
     <Compile Include="Models\ViewModels\HomeModels.cs" />
-    <Compile Include="Models\webpages_Membership.cs">
-      <DependentUpon>MainModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\webpages_OAuthMembership.cs">
-      <DependentUpon>MainModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\webpages_Roles.cs">
-      <DependentUpon>MainModel.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\ViewModels\MemberModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -244,44 +200,11 @@
     <Content Include="Content\bootstrap-responsive.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\icon-book.png" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <EntityDeploy Include="Models\MainModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>MainModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\MainModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MainModel.edmx</DependentUpon>
-      <LastGenOutput>MainModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\MainModel.edmx.diagram">
-      <DependentUpon>MainModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\MainModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MainModel.edmx</DependentUpon>
-      <LastGenOutput>MainModel.cs</LastGenOutput>
-    </Content>
-    <EntityDeploy Include="Models\BooksModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>BooksModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\BooksModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BooksModel.edmx</DependentUpon>
-      <LastGenOutput>BooksModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\BooksModel.edmx.diagram">
-      <DependentUpon>BooksModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\BooksModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BooksModel.edmx</DependentUpon>
-      <LastGenOutput>BooksModel.cs</LastGenOutput>
-    </Content>
     <None Include="Properties\PublishProfiles\TestPublish.pubxml" />
     <None Include="Properties\PublishProfiles\Zac.pubxml" />
     <None Include="Scripts\jquery-1.9.0.intellisense.js" />
@@ -341,6 +264,9 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_BootstrapLayout.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\BookBox.cshtml" />
+    <Content Include="Views\Book\Index.cshtml" />
+    <Content Include="Views\Book\BookDetail.cshtml" />
+    <Content Include="Views\Member\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -362,6 +288,12 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{484e1a62-9e81-491e-9c6b-0ae5c1692391}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

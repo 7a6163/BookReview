@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BookReview.Models
+namespace Domain
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class BookEntities : DbContext
+    public partial class MainEntities : DbContext
     {
-        public BookEntities()
-            : base("name=BookEntities")
+        public MainEntities()
+            : base("name=MainEntities")
         {
         }
     
@@ -25,7 +25,9 @@ namespace BookReview.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<Books> Books { get; set; }
-        public DbSet<Comments> Comments { get; set; }
+        public DbSet<UserProfile> UserProfile { get; set; }
+        public DbSet<webpages_Membership> webpages_Membership { get; set; }
+        public DbSet<webpages_OAuthMembership> webpages_OAuthMembership { get; set; }
+        public DbSet<webpages_Roles> webpages_Roles { get; set; }
     }
 }

@@ -123,6 +123,9 @@
   <data name="Login" xml:space="preserve">
     <value>登入</value>
   </data>
+  <data name="Logout" xml:space="preserve">
+    <value>登出</value>
+  </data>
   <data name="SignUp" xml:space="preserve">
     <value>註冊</value>
   </data>

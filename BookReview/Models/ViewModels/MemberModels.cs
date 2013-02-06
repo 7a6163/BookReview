@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using BookReview.Models.TemplateModels;
 
 namespace BookReview.Models.ViewModels
 {
-    public class HomeIndex
+    public class MemberModels
     {
-        public List<BookBox> listBookBox { get; set; }
+
+    }
+
+    public class MemberIndex
+    {
+
     }
 }
