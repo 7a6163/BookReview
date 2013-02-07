@@ -44,9 +44,18 @@
                         }
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">@Resource.Language<b class="caret"></b></a>
+                            @*@Html.DropDownList("Language",
+                            new SelectList(
+                                new List<SelectListItem>(){ 
+                                    new SelectListItem() { Selected = true, Text = Resource.Select, Value = string.Empty }, 
+                                    new SelectListItem() { Text = Resource.Chinese, Value = "zh-TW" }, 
+                                    new SelectListItem() { Text = Resource.English, Value = "en-US" }
+                            }, "Value", "Text"))*@
                             <ul class="dropdown-menu">
-                                <li><a href="#">中文</a></li>
-                                <li><a href="#">English</a></li>
+                                <li>@Html.ActionLink(Resource.Chinese, "ChangeLanguage", "Home", new { Language = "zh-TW" }, null)</li>
+                                <li>@Html.ActionLink(Resource.English, "ChangeLanguage", "Home", new { Language = "en-US" }, null)</li>
+                                @*<li><a href="#">@Resource.Chinese</a></li>
+                                <li><a href="#">@Resource.English</a></li>*@
                             </ul>
                         </li>
                     </ul>

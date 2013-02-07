@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
 using BookReview.Models;
 using BookReview.Models.ViewModels;
 using Domain;
@@ -24,14 +25,20 @@ namespace BookReview.Controllers
         public ActionResult BookDetail(Guid? id)
         {
             var book = _bookEntities.Books.Find(id);
-            BookBookDetail model = new BookBookDetail()
-                {
-                    Id = book.Id,
-                    Author = book.Author,
-                    Name = book.Name,
-                    PublishDate = (DateTime)book.PublishDate,
-                    Publisher = book.Publisher
-                };
+            var model = new BookBookDetail();
+
+            Mapper.CreateMap<Books, BookBookDetail>();
+            Mapper.Map(book, model);
+
+            //BookBookDetail model = new BookBookDetail()
+            //    {
+            //        Id = book.Id,
+            //        Author = book.Author,
+            //        Name = book.Name,
+            //        PublishDate = (DateTime)book.PublishDate,
+            //        Publisher = book.Publisher
+            //    };
+
             return View(model);
         }
     }

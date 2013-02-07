@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
 using Domain;
 using BookReview.Models.TemplateModels;
 using BookReview.Models.ViewModels;
@@ -34,19 +35,26 @@ namespace BookReview.Controllers
             //}
             //bookEntities.SaveChanges();
 
-            HomeIndex model = new HomeIndex();
-            var books = _bookEntities.Books;
-            var qlistBookBox = (from b in books
-                                orderby b.UpdateDate descending
-                                select new BookBox()
-                                    {
-                                        Id = b.Id,
-                                        Name = b.Name,
-                                        Author = b.Author,
-                                        Publisher = b.Publisher,
-                                        PublishDate = (DateTime)b.PublishDate
-                                    }).Take(10);
-            model.listBookBox = qlistBookBox.ToList();
+            //var qlistBookBox = (from b in books
+            //                    orderby b.UpdateDate descending
+            //                    select new BookBox()
+            //                        {
+            //                            Id = b.Id,
+            //                            Name = b.Name,
+            //                            Author = b.Author,
+            //                            Publisher = b.Publisher,
+            //                            PublishDate = (DateTime)b.PublishDate
+            //                        }).Take(10);
+
+            //model.listBookBox = qlistBookBox.ToList();
+
+            var listBookBox = _bookEntities.Books.OrderByDescending(b => b.UpdateDate).Take(10).ToList();
+            var model = new HomeIndex();
+            model.listBookBox = new List<BookBox>();
+
+            Mapper.CreateMap<Books, BookBox>();
+            Mapper.Map(listBookBox, model.listBookBox);
+
             return View(model);
         }
 
