@@ -51,6 +51,7 @@ namespace BookReview.Controllers
         // Get: /Account/LogOff
 
         [HttpGet]
+        [Authorize]
         public ActionResult LogOff()
         {
             WebSecurity.Logout();

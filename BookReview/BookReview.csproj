@@ -190,6 +190,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\TemplateModels\BookComment.cs" />
     <Compile Include="Models\ViewModels\AccountModels.cs" />
     <Compile Include="Models\TemplateModels\BookBox.cs" />
     <Compile Include="Models\ViewModels\BookModels.cs" />
@@ -203,9 +204,12 @@
     <Content Include="Content\bootstrap-responsive.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\delete.gif" />
     <Content Include="Content\images\icon-book.png" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
+    <Content Include="Content\rateit.css" />
+    <Content Include="Content\star.gif" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <None Include="Properties\PublishProfiles\TestPublish.pubxml" />
@@ -216,6 +220,8 @@
     <Content Include="Scripts\jquery-1.9.0.js" />
     <Content Include="Scripts\jquery-1.9.0.min.js" />
     <Content Include="Scripts\jquery-1.9.0.min.map" />
+    <Content Include="Scripts\jquery.rateit.js" />
+    <Content Include="Scripts\jquery.rateit.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -270,6 +276,8 @@
     <Content Include="Views\Book\Index.cshtml" />
     <Content Include="Views\Book\BookDetail.cshtml" />
     <Content Include="Views\Member\Index.cshtml" />
+    <Content Include="Views\Book\EditorTemplates\BookComment.cshtml" />
+    <Content Include="Views\Book\DisplayTemplates\BookComment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

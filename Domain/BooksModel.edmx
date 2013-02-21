@@ -36,6 +36,7 @@
           <Property Name="Content" Type="nvarchar(max)" />
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
           <Property Name="IsEnable" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="Rating" Type="float" />
         </EntityType>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -72,6 +73,7 @@
           <Property Type="String" Name="Content" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="CreateDate" Nullable="false" Precision="3" />
           <Property Type="String" Name="IsEnable" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="Double" Name="Rating" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -99,6 +101,7 @@
           <EntitySetMapping Name="Comments">
             <EntityTypeMapping TypeName="BookReviewModel.Comments">
               <MappingFragment StoreEntitySet="Comments">
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
                 <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="Content" ColumnName="Content" />

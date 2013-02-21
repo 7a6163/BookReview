@@ -27,10 +27,38 @@ namespace BookReview
             AuthConfig.RegisterAuth();
         }
 
-        public void Application_PreRequestHandlerExecute()
+        public void Application_AcquireRequestState()
         {
-            if (Request.UserLanguages != null)
-                Thread.CurrentThread.CurrentCulture = new CultureInfo(Request.UserLanguages[0]);
+            var langCookie = HttpContext.Current.Request.Cookies["lang"];
+
+            //Sets default culture to english invariant
+            string langName = "en";
+
+            if (langCookie == null)
+            {
+                //Try to get values from Accept lang HTTP header
+                if (HttpContext.Current.Request.UserLanguages != null && HttpContext.Current.Request.UserLanguages.Length != 0)
+                {
+                    //Gets accepted list 
+                    langName = HttpContext.Current.Request.UserLanguages[0].Substring(0, 2);
+                }
+
+                //Checking first if there is no value in session 
+                //and set default language 
+                //this can happen for first user's request
+                langCookie = new HttpCookie("lang", langName)
+                {
+                    HttpOnly = true
+                };
+
+                HttpContext.Current.Response.AppendCookie(langCookie);
+            }
+
+            var ci = new CultureInfo(langCookie.Value);
+
+            //Finally setting culture for each request
+            Thread.CurrentThread.CurrentUICulture = ci;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(ci.Name);
         }
     }
 }

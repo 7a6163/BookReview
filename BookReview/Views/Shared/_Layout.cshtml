@@ -52,8 +52,8 @@
                                     new SelectListItem() { Text = Resource.English, Value = "en-US" }
                             }, "Value", "Text"))*@
                             <ul class="dropdown-menu">
-                                <li>@Html.ActionLink(Resource.Chinese, "ChangeLanguage", "Home", new { Language = "zh-TW" }, null)</li>
-                                <li>@Html.ActionLink(Resource.English, "ChangeLanguage", "Home", new { Language = "en-US" }, null)</li>
+                                <li>@Html.ActionLink(Resource.Chinese, "ChangeLanguage", "Home", new { language = "zh-TW", returnUrl = Url.Action(ViewContext.RouteData.Values["Action"].ToString(), ViewContext.RouteData.Values["Controller"].ToString()) }, null)</li>
+                                <li>@Html.ActionLink(Resource.English, "ChangeLanguage", "Home", new { Language = "en-US", returnUrl = Url.Action(ViewContext.RouteData.Values["Action"].ToString(), ViewContext.RouteData.Values["Controller"].ToString()) }, null)</li>
                                 @*<li><a href="#">@Resource.Chinese</a></li>
                                 <li><a href="#">@Resource.English</a></li>*@
                             </ul>

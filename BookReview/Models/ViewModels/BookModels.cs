@@ -12,5 +12,7 @@ namespace BookReview.Models.ViewModels
 
     public class BookBookDetail : BookBox
     {
+        public BookComment BookComment { get; set; }
+        public List<BookComment> ListBookComment { get; set; }
     }
 }

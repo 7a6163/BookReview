@@ -21,5 +21,6 @@ namespace Domain
         public string Content { get; set; }
         public System.DateTime CreateDate { get; set; }
         public string IsEnable { get; set; }
+        public Nullable<double> Rating { get; set; }
     }
 }

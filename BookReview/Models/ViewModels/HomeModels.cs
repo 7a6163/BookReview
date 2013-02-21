@@ -8,6 +8,6 @@ namespace BookReview.Models.ViewModels
 {
     public class HomeIndex
     {
-        public List<BookBox> listBookBox { get; set; }
+        public List<BookBox> ListBookBox { get; set; }
     }
 }
