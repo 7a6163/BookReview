@@ -120,6 +120,9 @@
   <data name="Chinese" xml:space="preserve">
     <value>Chinese</value>
   </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
   <data name="English" xml:space="preserve">
     <value>English</value>
   </data>
@@ -132,10 +135,34 @@
   <data name="Logout" xml:space="preserve">
     <value>Logout</value>
   </data>
+  <data name="Nickname" xml:space="preserve">
+    <value>Nickname</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="PasswordConfirm" xml:space="preserve">
+    <value>Password Confirm</value>
+  </data>
+  <data name="PasswordConfirmFailed" xml:space="preserve">
+    <value>Password Confirm Failed</value>
+  </data>
+  <data name="Registration" xml:space="preserve">
+    <value>Registration</value>
+  </data>
+  <data name="RegistrationForm" xml:space="preserve">
+    <value>Registration Form</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Remember me?</value>
+  </data>
   <data name="Select" xml:space="preserve">
     <value>Select</value>
   </data>
   <data name="SignUp" xml:space="preserve">
     <value>Sign up</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>User Name</value>
   </data>
 </root>

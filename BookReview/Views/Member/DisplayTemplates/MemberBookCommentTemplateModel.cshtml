@@ -1,0 +1,9 @@
+﻿@model BookReview.Models.TemplateModels.MemberBookCommentTemplateModel
+
+@Html.DisplayFor(m => m.BookName)
+<dt>@(Model.CreaterId == null ? "None" : Model.CreaterId.ToString())</dt>
+<div class="rateit" data-rateit-value="@Model.Rating" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
+<dd>
+    @Html.DisplayFor(m => m.CreateDate)
+    @Html.DisplayFor(m => m.Content)
+</dd>

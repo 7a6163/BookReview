@@ -4,14 +4,50 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@section head
+{
+}
+
+@section scripts
+{
+    <script>
+        function submitSuccess(context) {
+            $("#commont").prepend(context);
+            $("#backing").rateit('value', prompt(0));
+            $("#BookComment_Content").val("");
+        }
+    </script>
+}
+
 <h2>BookDetail</h2>
 
-@Html.LabelFor(m => m.Name)
-@Html.DisplayTextFor(m => m.Name)
-@Html.LabelFor(m => m.Author)
-@Html.DisplayTextFor(m => m.Author)
-@Html.LabelFor(m => m.Publisher)
-@Html.DisplayTextFor(m => m.Publisher)
-@Html.LabelFor(m => m.PublishDate)
-@Html.DisplayTextFor(m => m.PublishDate)
+<div style="padding: 30px 20px 30px 20px;" class="row">
+    <div style="float: left; margin-right: 20px">
+        <img src="@Url.Content("~/Content/images/icon-book.png")" alt="Book Icon" class="img-polaroid" />
+    </div>
+    <div style="float: left">
+        @Html.LabelFor(m => m.Name)
+        @Html.DisplayTextFor(m => m.Name)
+        @Html.LabelFor(m => m.Author)
+        @Html.DisplayTextFor(m => m.Author)
+        @Html.LabelFor(m => m.Publisher)
+        @Html.DisplayTextFor(m => m.Publisher)
+        @Html.LabelFor(m => m.PublishDate)
+        @Html.DisplayTextFor(m => m.PublishDate)
+    </div>
+</div>
 
+<ul class="inline">
+    <li><a href="#" title="評論"><i class="icon-tags"></i>評論</a></li>
+    <li><a href="#" title="收藏"><i class="icon-heart"></i>收藏</a></li>
+    <li><a href="#" title="願望"><i class="icon-shopping-cart"></i>願望</a></li>
+</ul>
+
+<dl id="commont">
+    @Html.DisplayFor(m => m.ListBookComment)
+</dl>
+
+@using (Ajax.BeginForm("SubmitComment", "Book", new AjaxOptions() { HttpMethod = "POST", OnSuccess = "submitSuccess" }))
+{
+    @Html.EditorFor(m => m.BookComment)
+}

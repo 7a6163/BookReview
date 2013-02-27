@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Globalization;
 using System.Web.Security;
+using BookReview.App_GlobalResources;
 using Domain;
 
 namespace BookReview.Models.ViewModels
@@ -59,37 +60,37 @@ namespace BookReview.Models.ViewModels
     public class LoginModel
     {
         [Required]
-        [Display(Name = "使用者名稱")]
+        [Display(ResourceType = typeof(Resource), Name = "Email")]
         public string UserName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "密碼")]
+        [Display(ResourceType = typeof(Resource), Name = "Password")]
         public string Password { get; set; }
 
-        [Display(Name = "記住我?")]
+        [Display(ResourceType = typeof(Resource), Name = "RememberMe")]
         public bool RememberMe { get; set; }
     }
 
     public class RegisterModel
     {
         [Required]
-        [Display(Name = "使用者名稱")]
+        [Display(ResourceType = typeof(Resource), Name = "Email")]
         public string UserName { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "{0} 長度至少必須為 {2} 個字元。", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "密碼")]
+        [Display(ResourceType = typeof(Resource), Name = "Password")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "確認密碼")]
-        [Compare("Password", ErrorMessage = "密碼和確認密碼不相符。")]
+        [Display(ResourceType = typeof(Resource), Name = "PasswordConfirm")]
+        [Compare("Password", ErrorMessageResourceType = typeof(Resource), ErrorMessageResourceName = "PasswordConfirmFailed")]
         public string ConfirmPassword { get; set; }
 
         [Required]
-        [Display(Name = "暱稱")]
+        [Display(ResourceType = typeof(Resource), Name = "Nickname")]
         public string Name { get; set; }
     }
 
@@ -98,5 +99,16 @@ namespace BookReview.Models.ViewModels
         public string Provider { get; set; }
         public string ProviderDisplayName { get; set; }
         public string ProviderUserId { get; set; }
+    }
+
+    public class MemberInfomation
+    {
+        [Required]
+        [Display(Name = "使用者名稱")]
+        public string UserName { get; set; }
+
+        [Required]
+        [Display(Name = "暱稱")]
+        public string Name { get; set; }
     }
 }
