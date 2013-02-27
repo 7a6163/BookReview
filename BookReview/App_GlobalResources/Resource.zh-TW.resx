@@ -120,6 +120,9 @@
   <data name="Chinese" xml:space="preserve">
     <value>中文</value>
   </data>
+  <data name="Email" xml:space="preserve">
+    <value>電子郵件信箱</value>
+  </data>
   <data name="English" xml:space="preserve">
     <value>英文</value>
   </data>
@@ -132,10 +135,34 @@
   <data name="Logout" xml:space="preserve">
     <value>登出</value>
   </data>
+  <data name="Nickname" xml:space="preserve">
+    <value>暱稱</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>密碼</value>
+  </data>
+  <data name="PasswordConfirm" xml:space="preserve">
+    <value>密碼確認</value>
+  </data>
+  <data name="PasswordConfirmFailed" xml:space="preserve">
+    <value>密碼和確認密碼不相符。</value>
+  </data>
+  <data name="Registration" xml:space="preserve">
+    <value>註冊帳號</value>
+  </data>
+  <data name="RegistrationForm" xml:space="preserve">
+    <value>註冊表單</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>記住我?</value>
+  </data>
   <data name="Select" xml:space="preserve">
     <value>請選擇</value>
   </data>
   <data name="SignUp" xml:space="preserve">
     <value>註冊</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>使用者帳號</value>
   </data>
 </root>

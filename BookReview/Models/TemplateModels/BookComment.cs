@@ -5,7 +5,7 @@ using System.Web;
 
 namespace BookReview.Models.TemplateModels
 {
-    public class BookComment
+    public class BookCommentTemplateModel
     {
         public Guid Id { get; set; }
         public Guid BookId { get; set; }
@@ -14,5 +14,11 @@ namespace BookReview.Models.TemplateModels
         public string Content { get; set; }
         public DateTime CreateDate { get; set; }
         public double? Rating { get; set; }
+    }
+
+    public class MemberBookCommentTemplateModel : BookCommentTemplateModel
+    {
+        public string BookName { get; set; }
+        public string BookImagePath { get; set; }
     }
 }

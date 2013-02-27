@@ -6,12 +6,17 @@
 
 @section head
 {
-    <link href="@Url.Content("~/Content/rateit.css")" rel="stylesheet"/>
 }
 
 @section scripts
 {
-    <script src="@Url.Content("~/Scripts/jquery.rateit.min.js")"></script>
+    <script>
+        function submitSuccess(context) {
+            $("#commont").prepend(context);
+            $("#backing").rateit('value', prompt(0));
+            $("#BookComment_Content").val("");
+        }
+    </script>
 }
 
 <h2>BookDetail</h2>
@@ -38,18 +43,11 @@
     <li><a href="#" title="願望"><i class="icon-shopping-cart"></i>願望</a></li>
 </ul>
 
-<div class="row">
-    <input type="range" value="4" step="0.25" id="backing4">
-    <div class="rateit" data-rateit-backingfld="#backing4" data-rateit-resetable="false" data-rateit-ispreset="true"
-        data-rateit-min="0" data-rateit-max="10">
-    </div>
-</div>
-
 <dl id="commont">
     @Html.DisplayFor(m => m.ListBookComment)
 </dl>
 
-@using (Html.BeginForm("AddComment", "Book", FormMethod.Post))
+@using (Ajax.BeginForm("SubmitComment", "Book", new AjaxOptions() { HttpMethod = "POST", OnSuccess = "submitSuccess" }))
 {
     @Html.EditorFor(m => m.BookComment)
 }

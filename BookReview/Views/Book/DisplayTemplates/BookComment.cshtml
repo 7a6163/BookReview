@@ -1,7 +1,0 @@
-﻿@model BookReview.Models.TemplateModels.BookComment
-
-<dt>@(Model.CreaterId == null ? "None" : Model.CreaterId.ToString())</dt>
-<dd>
-    @Html.DisplayFor(m => m.CreateDate)
-    @Html.DisplayFor(m => m.Content)
-</dd>

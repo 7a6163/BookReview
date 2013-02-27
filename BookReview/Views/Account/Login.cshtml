@@ -1,7 +1,8 @@
-﻿@model BookReview.Models.ViewModels.LoginModel
+﻿@using BookReview.App_GlobalResources
+@model BookReview.Models.ViewModels.LoginModel
 
 @{
-    ViewBag.Title = "登入";
+    ViewBag.Title = Resource.Login;
 }
 
 <hgroup class="title">
@@ -9,7 +10,6 @@
 </hgroup>
 
 <section id="loginForm">
-<h2>使用本機帳戶登入。</h2>
 @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl })) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)

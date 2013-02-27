@@ -1,40 +1,96 @@
-﻿@model BookReview.Models.ViewModels.RegisterModel
+﻿@using BookReview.App_GlobalResources
+@model BookReview.Models.ViewModels.RegisterModel
 @{
-    ViewBag.Title = "註冊";
+    ViewBag.Title = Resource.Registration;
 }
 
 <hgroup class="title">
-    <h1>@ViewBag.Title.</h1>
-    <h2>建立新的帳戶。</h2>
+    <h1>@Resource.Registration</h1>
 </hgroup>
 
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary()
+<div>
+    <!-- sign up main form -->
+    <div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary()
 
-    <fieldset>
-        <legend>註冊表單 GIT Test</legend>
-        <ol>
-            <li>
-                @Html.LabelFor(m => m.UserName)
-                @Html.TextBoxFor(m => m.UserName)
-            </li>
-            <li>
-                @Html.LabelFor(m => m.Password)
-                @Html.PasswordFor(m => m.Password)
-            </li>
-            <li>
-                @Html.LabelFor(m => m.ConfirmPassword)
-                @Html.PasswordFor(m => m.ConfirmPassword)
-            </li>
-            <li>
-                @Html.LabelFor(m => m.Name)
-                @Html.TextBoxFor(m => m.Name)
-            </li>
-        </ol>
-        <input type="submit" value="註冊" />
-    </fieldset>
-}
+            <fieldset>
+                <legend>@Resource.RegistrationForm</legend>
+                <ol>
+                    <li>
+                        @Html.LabelFor(m => m.UserName)
+                        @Html.TextBoxFor(m => m.UserName)
+                    </li>
+                    <li>
+                        @Html.LabelFor(m => m.Password)
+                        @Html.PasswordFor(m => m.Password)
+                    </li>
+                    <li>
+                        @Html.LabelFor(m => m.ConfirmPassword)
+                        @Html.PasswordFor(m => m.ConfirmPassword)
+                    </li>
+                    <li>
+                        @Html.LabelFor(m => m.Name)
+                        @Html.TextBoxFor(m => m.Name)
+                    </li>
+                </ol>
+
+                <div>
+                    <label>@Html.CheckBox("agree", false)我同意以下事項:</label>
+                    @*TODO: Fix site name*@
+                    <ul>
+                        <li>我已閱讀並接受 aNobii <a href="http://www.anobii.com/terms_of_service" target="_blank">服務條款</a> 及 <a href="http://www.anobii.com/privacy" target="_blank">隱私權政策</a>
+                        </li>
+                        <li>我同意收到來自 aNobii 的通知，並了解我隨時可以在設定裡修改我的電子郵件偏好設定
+                        </li>
+                        <li>我已滿 13 歲
+                        </li>
+                    </ul>
+                </div>
+
+                <input type="submit" value="註冊" />
+            </fieldset>
+        }
+    </div>
+    <!-- sign up side banner -->
+    <div class="signup_content_side D">
+        <div class="signup_content_side_feature discover png_bg">
+            <h3>
+                書櫃
+            </h3>
+            <h4>
+                放上書櫃並展示您的藏書
+            </h4>
+        </div>
+        <div class="signup_content_side_feature reader png_bg">
+            <h3>
+                尋找
+            </h3>
+            <h4>
+                藉由 aNobii 社群的協助，找尋您的下一本書籍
+            </h4>
+        </div>
+        <div class="signup_content_side_feature shelf png_bg">
+            <h3>
+                分享
+            </h3>
+            <h4>
+                評分並評論您的藏書，並在 Facebook 與 Twitter 上分享給大家
+            </h4>
+        </div>
+    </div>
+    <!-- existing user -->
+    <div id="connect_option">
+        <div id="connect_option_existing">
+            <h2>
+                已註冊的使用者？
+            </h2>
+            @Html.ActionLink(Resource.Login, "Login", new { controller = "Account" }, new { @class = "signin" })
+        </div>
+    </div>
+</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

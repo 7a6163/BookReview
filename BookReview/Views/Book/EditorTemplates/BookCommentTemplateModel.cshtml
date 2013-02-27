@@ -1,0 +1,17 @@
+﻿@model BookReview.Models.TemplateModels.BookCommentTemplateModel
+
+<h2>評論</h2>
+<div class="row">
+    <input name="BookComment.Rating" type="range" value="0" step="0.5" id="backing">
+    <div class="rateit" data-rateit-backingfld="#backing" data-rateit-resetable="false" data-rateit-ispreset="true"
+        data-rateit-min="0" data-rateit-max="5">
+    </div>
+</div>
+<div class="row">
+    @Html.TextAreaFor(m => m.Content, 3, 10, null)
+</div>
+<div class="row">
+    <input class="btn btn-small btn-primary" type="submit" value="Submit" />
+    <input class="btn btn-small" type="button" value="Cancel" />
+</div>
+@Html.HiddenFor(m => m.BookId)
