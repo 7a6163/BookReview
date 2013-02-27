@@ -8,7 +8,7 @@
         <EntityContainer Name="BookReviewModelStoreContainer">
           <EntitySet Name="Books" EntityType="BookReviewModel.Store.Books" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Comments" EntityType="BookReviewModel.Store.Comments" store:Type="Tables" Schema="dbo" />
-          </EntityContainer>
+        </EntityContainer>
         <EntityType Name="Books">
           <Key>
             <PropertyRef Name="Id" />
@@ -24,6 +24,12 @@
           <Property Name="Updater" Type="nvarchar" MaxLength="200" />
           <Property Name="PublishDate" Type="datetime" />
           <Property Name="Publisher" Type="nvarchar" MaxLength="200" />
+          <Property Name="ISBN" Type="nvarchar" MaxLength="13" />
+          <Property Name="Classification" Type="uniqueidentifier" />
+          <Property Name="ImagePath" Type="nvarchar" MaxLength="200" />
+          <Property Name="Price" Type="int" />
+          <Property Name="Language" Type="char" MaxLength="1" />
+          <Property Name="Binding" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Comments">
           <Key>
@@ -61,6 +67,12 @@
           <Property Type="String" Name="Updater" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="PublishDate" Precision="3" />
           <Property Type="String" Name="Publisher" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ISBN" MaxLength="13" FixedLength="false" Unicode="true" />
+          <Property Type="Guid" Name="Classification" />
+          <Property Type="String" Name="ImagePath" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Price" />
+          <Property Type="String" Name="Language" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="Binding" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Comments">
           <Key>
@@ -84,6 +96,12 @@
           <EntitySetMapping Name="Books">
             <EntityTypeMapping TypeName="BookReviewModel.Books">
               <MappingFragment StoreEntitySet="Books">
+                <ScalarProperty Name="Binding" ColumnName="Binding" />
+                <ScalarProperty Name="Language" ColumnName="Language" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="Classification" ColumnName="Classification" />
+                <ScalarProperty Name="ISBN" ColumnName="ISBN" />
                 <ScalarProperty Name="Publisher" ColumnName="Publisher" />
                 <ScalarProperty Name="PublishDate" ColumnName="PublishDate" />
                 <ScalarProperty Name="Updater" ColumnName="Updater" />
