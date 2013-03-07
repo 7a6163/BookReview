@@ -30,6 +30,8 @@
           <Property Name="Price" Type="int" />
           <Property Name="Language" Type="char" MaxLength="1" />
           <Property Name="Binding" Type="nvarchar" MaxLength="100" />
+          <Property Name="Class" Type="nvarchar" MaxLength="300" />
+          <Property Name="SubClass" Type="nvarchar" MaxLength="300" />
         </EntityType>
         <EntityType Name="Comments">
           <Key>
@@ -73,6 +75,8 @@
           <Property Type="Int32" Name="Price" />
           <Property Type="String" Name="Language" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Type="String" Name="Binding" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Class" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SubClass" MaxLength="300" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Comments">
           <Key>
@@ -96,6 +100,8 @@
           <EntitySetMapping Name="Books">
             <EntityTypeMapping TypeName="BookReviewModel.Books">
               <MappingFragment StoreEntitySet="Books">
+                <ScalarProperty Name="SubClass" ColumnName="SubClass" />
+                <ScalarProperty Name="Class" ColumnName="Class" />
                 <ScalarProperty Name="Binding" ColumnName="Binding" />
                 <ScalarProperty Name="Language" ColumnName="Language" />
                 <ScalarProperty Name="Price" ColumnName="Price" />

@@ -1,6 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
+using System.Net.Mime;
 using System.Transactions;
 using System.Web;
 using System.Web.Mvc;
@@ -77,6 +82,7 @@ namespace BookReview.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            ViewData["IsShowLoginBar"] = false;
             return View();
         }
 
@@ -88,6 +94,11 @@ namespace BookReview.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Register(RegisterModel model)
         {
+            ViewData["IsShowLoginBar"] = false;
+
+            if (!model.CheckCode.Equals(Request.Cookies["CheckCode"]))
+                ModelState.AddModelError("CheckCode", "驗證碼錯誤");
+
             if (ModelState.IsValid)
             {
                 // 嘗試註冊使用者
@@ -340,6 +351,83 @@ namespace BookReview.Controllers
 
             ViewBag.ShowRemoveButton = externalLogins.Count > 1 || OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
             return PartialView("_RemoveExternalLoginsPartial", externalLogins);
+        }
+
+        private string GenerateCheckCode()
+        {
+            string checkCode = string.Empty;
+            Random random = new Random();
+
+            for (int i = 0; i < 5; i++)
+            {
+                int number = random.Next();
+                char code;
+                if (number % 2 == 0)
+                {
+                    code = Convert.ToChar(Convert.ToInt32('0') + (number % 10));
+                }
+                else
+                {
+                    code = Convert.ToChar(Convert.ToInt32('A') + (number % 26));
+                }
+                checkCode += code.ToString();
+            }
+            Response.Cookies.Add(new HttpCookie("CheckCode", checkCode));
+            return checkCode;
+        }
+
+        [AllowAnonymous]
+        public ActionResult CreateCheckCodeImage()
+        {
+            string checkCode = GenerateCheckCode();
+
+            if (string.IsNullOrWhiteSpace(checkCode))
+                return null;
+
+            Bitmap image = new Bitmap(100, 30);
+            Graphics g = Graphics.FromImage(image);
+
+            try
+            {
+                Random random = new Random();
+
+                g.Clear(Color.White);
+
+                for (int i = 0; i < 25; i++)
+                {
+                    int x1 = random.Next(image.Width);
+                    int x2 = random.Next(image.Width);
+                    int y1 = random.Next(image.Height);
+                    int y2 = random.Next(image.Height);
+                    g.DrawLine(new Pen(Color.Silver), x1, y1, x2, y2);
+                }
+
+                Font font = new Font("Arial", 22, FontStyle.Bold);
+                LinearGradientBrush brush = new LinearGradientBrush(new Rectangle(0, 0, image.Width, image.Height), Color.Blue, Color.DarkRed, 1.2F,
+                                        true);
+                g.DrawString(checkCode, font, brush, 2, 2);
+
+                for (int i = 0; i < 500; i++)
+                {
+                    int x = random.Next(image.Width);
+                    int y = random.Next(image.Height);
+
+                    image.SetPixel(x, y, Color.FromArgb(random.Next()));
+                }
+
+                g.DrawRectangle(new Pen(Color.Silver), 0, 0, image.Width - 1, image.Height - 1);
+
+                MemoryStream ms = new MemoryStream();
+
+                image.Save(ms, ImageFormat.Gif);
+
+                return File(ms.ToArray(), MediaTypeNames.Image.Gif);
+            }
+            finally
+            {
+                g.Dispose();
+                image.Dispose();
+            }
         }
 
         #region Helper

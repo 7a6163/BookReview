@@ -16,4 +16,6 @@ namespace BookReview.Models.ViewModels
         public MemberInfomation MemberInfomation { get; set; }
         public List<MemberBookCommentTemplateModel> ListBookBookComment { get; set; }
     }
+
+    public class MemberAddBook { }
 }

@@ -19,7 +19,28 @@
     </script>
 }
 
-<h2>BookDetail</h2>
+<div class="container">
+    <div class="row-fluid">
+        <div class="span3">
+            <img src="~/Content/_img/book.png" />
+        </div>
+        <div class="span5">
+            <h3>行李箱的男孩</h3>
+            <ul style="list-style: none; margin-left: 0; font-size: 16px">
+                <li style="margin-bottom: 2px">作者：琳恩‧卡波布<span class="divider">/</span>安奈特‧斐瑞斯</li>
+                <li style="margin-bottom: 2px">譯者：顏湘如</li>
+                <li style="margin-bottom: 2px">出版社：馬可孛羅文化事業股份有限公司</li>
+                <li style="margin-bottom: 2px">出版日期：2013/01/03</li>
+                <li style="margin-bottom: 2px">語言：中文<span class="divider">/</span>繁體</li>
+                <li style="margin-bottom: 2px">裝訂：平裝</li>
+                <li style="margin-bottom: 2px">定價：NT300</li>
+                <li style="margin-bottom: 2px">ISBN：9789866319570</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+@*<h2>BookDetail</h2>
 
 <div style="padding: 30px 20px 30px 20px;" class="row">
     <div style="float: left; margin-right: 20px">
@@ -50,4 +71,4 @@
 @using (Ajax.BeginForm("SubmitComment", "Book", new AjaxOptions() { HttpMethod = "POST", OnSuccess = "submitSuccess" }))
 {
     @Html.EditorFor(m => m.BookComment)
-}
+}*@

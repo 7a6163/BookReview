@@ -92,6 +92,10 @@ namespace BookReview.Models.ViewModels
         [Required]
         [Display(ResourceType = typeof(Resource), Name = "Nickname")]
         public string Name { get; set; }
+
+        [Required]
+        [Display(Name = "驗證碼")]
+        public string CheckCode { get; set; }
     }
 
     public class ExternalLogin

@@ -23,7 +23,7 @@ namespace BookReview.Controllers
         {
             MemberIndex model = new MemberIndex();
 
-            UserProfile userProfile = _mainEntities.UserProfile.Where(u => u.UserName.Equals(User.Identity.Name)).FirstOrDefault();
+            UserProfile userProfile = _mainEntities.UserProfile.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
             model.MemberInfomation = new MemberInfomation() { UserName = userProfile.UserName, Name = userProfile.Name };
 
             var comments = _bookEntities.Comments.Where(c => c.CreaterId == userProfile.UserId);
@@ -46,5 +46,9 @@ namespace BookReview.Controllers
             return View(model);
         }
 
+        public ActionResult AddNewBook()
+        {
+            return null;
+        }
     }
 }
