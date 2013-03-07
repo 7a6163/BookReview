@@ -31,5 +31,7 @@ namespace Domain
         public Nullable<int> Price { get; set; }
         public string Language { get; set; }
         public string Binding { get; set; }
+        public string Class { get; set; }
+        public string SubClass { get; set; }
     }
 }

@@ -234,10 +234,12 @@ ul#menu {
 /* page titles */
 hgroup.title {
     margin-bottom: 10px;
+    border-bottom: #CCC 1px dotted;
 }
 
 hgroup.title h1, hgroup.title h2 {
     display: inline;
+    padding: 0 0 10px 0;
 }
 
 hgroup.title h2 {
