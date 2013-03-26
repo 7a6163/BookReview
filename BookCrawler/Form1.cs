@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Globalization;
-using System.Linq;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -41,21 +40,24 @@ namespace BookCrawler
 
                 if (doc.DocumentNode.SelectNodes(@"//*[@id=""pr_data""]/ul[1]/li") == null) continue;
 
-                string subClass =
-                    doc.DocumentNode.SelectSingleNode(@"//*[@class=""here""]/a").InnerText;
-
-                string mainClass =
-                    doc.DocumentNode.SelectSingleNode(@"//*[@class=""layer1""]").PreviousSibling.InnerHtml;
-
                 int count = doc.DocumentNode.SelectNodes(@"//*[@id=""pr_data""]/ul[1]/li").Count;
+
+                var description = doc.DocumentNode.SelectSingleNode(@"//*[@class=""spr01_free""]");
 
                 var book = new Books
                     {
                         Id = Guid.NewGuid(),
                         Name = doc.DocumentNode.SelectSingleNode(@"//*[@id=""pr_data""]/div[1]/h1/span").InnerText,
                         Author = doc.DocumentNode.SelectSingleNode(@"//*[@id=""pr_data""]/ul[1]/li[1]/a").InnerText,
-                        Description = doc.DocumentNode.SelectSingleNode(@"//*[@id=""tag1content""]").InnerHtml
+                        Class = doc.DocumentNode.SelectSingleNode(@"//*[@class=""layer1""]").PreviousSibling.InnerHtml,
+                        SubClass = doc.DocumentNode.SelectSingleNode(@"//*[@class=""layer1""]/li[@class=""here""]").InnerText
                     };
+
+                if (description != null)
+                {
+                    book.Description = doc.DocumentNode.SelectSingleNode(@"//*[@class=""spr01_free""]").InnerHtml;
+                }
+
                 string sUrl = doc.DocumentNode.SelectSingleNode(@"//*[@id=""main_img""]")
                                    .GetAttributeValue("src", string.Empty);
 
@@ -78,7 +80,7 @@ namespace BookCrawler
                 bool hasIsbn = true;
                 switch (count)
                 {
-                    case 8:
+                    case 9:
                         dateString = doc.DocumentNode.SelectSingleNode(@"//*[@id=""pr_data""]/ul[1]/li[6]/dfn").InnerText;
                         book.Publisher = doc.DocumentNode.SelectSingleNode(@"//*[@id=""pr_data""]/ul[1]/li[5]/a").InnerText;
                         if (doc.DocumentNode.SelectSingleNode(@"//*[@id=""pr_data""]/ul[1]/li[7]/dfn[2]") == null)
@@ -86,6 +88,7 @@ namespace BookCrawler
                             hasIsbn = false;
                             break;
                         }
+
                         book.ISBN =
                             doc.DocumentNode.SelectSingleNode(@"//*[@id=""pr_data""]/ul[1]/li[7]/dfn[2]").InnerText;
                         language =
@@ -94,7 +97,7 @@ namespace BookCrawler
                         book.Binding =
                             doc.DocumentNode.SelectSingleNode(@"//*[@id=""pr_data""]/ul[1]/li[8]/dfn").InnerText;
                         break;
-                    case 7:
+                    case 8:
                         dateString = doc.DocumentNode.SelectSingleNode(@"//*[@id=""pr_data""]/ul[1]/li[5]/dfn").InnerText;
                         book.Publisher = doc.DocumentNode.SelectSingleNode(@"//*[@id=""pr_data""]/ul[1]/li[4]/a").InnerText;
                         if (doc.DocumentNode.SelectSingleNode(@"//*[@id=""pr_data""]/ul[1]/li[6]/dfn[2]") == null)
@@ -111,7 +114,7 @@ namespace BookCrawler
                             doc.DocumentNode.SelectSingleNode(@"//*[@id=""pr_data""]/ul[1]/li[7]/dfn").InnerText;
 
                         break;
-                    case 6:
+                    case 7:
                         dateString = doc.DocumentNode.SelectSingleNode(@"//*[@id=""pr_data""]/ul[1]/li[4]/dfn").InnerText;
                         book.Publisher = doc.DocumentNode.SelectSingleNode(@"//*[@id=""pr_data""]/ul[1]/li[3]/a").InnerText;
                         if (doc.DocumentNode.SelectSingleNode(@"//*[@id=""pr_data""]/ul[1]/li[5]/dfn[2]") == null)
@@ -126,7 +129,7 @@ namespace BookCrawler
                         book.Binding =
                             doc.DocumentNode.SelectSingleNode(@"//*[@id=""pr_data""]/ul[1]/li[6]/dfn").InnerText;
                         break;
-                    case 5:
+                    case 6:
                         dateString = doc.DocumentNode.SelectSingleNode(@"//*[@id=""pr_data""]/ul[1]/li[3]/dfn").InnerText;
                         book.Publisher = doc.DocumentNode.SelectSingleNode(@"//*[@id=""pr_data""]/ul[1]/li[2]/a").InnerText;
 
