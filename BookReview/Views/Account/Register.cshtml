@@ -19,22 +19,22 @@
                 <div class="row-fluid">
                     <h4>告訴我們你是誰</h4>
                     @Html.TextBoxFor(m => m.Name, new { @class = "span10" })
-                    @Html.ValidationMessageFor(m => m.Name, "123")
+                    <p class="text-error">@Html.ValidationMessageFor(m => m.Name)</p>
                 </div>
                 <div class="row-fluid">
                     <h4>常用的電子郵件<small>(我們認真想要推薦好書給你)</small></h4>
                     @Html.TextBoxFor(m => m.UserName, new { @class = "span10" })
-                    @Html.ValidationMessageFor(m => m.UserName)
+                    <p class="text-error">@Html.ValidationMessageFor(m => m.UserName)</p>
                 </div>
                 <div class="row-fluid">
                     <h4>最愛密碼</h4>
                     @Html.PasswordFor(m => m.Password, new { @class = "span10" })
-                    @Html.ValidationMessageFor(m => m.Password)
+                    <p class="text-error">@Html.ValidationMessageFor(m => m.Password)</p>
                 </div>
                 <div class="row-fluid">
                     <h4>最愛密碼確認</h4>
                     @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "span10" })
-                    @Html.ValidationMessageFor(m => m.ConfirmPassword)
+                    <p class="text-error">@Html.ValidationMessageFor(m => m.ConfirmPassword)</p>
                 </div>
                 <div class="row-fluid">
                     <h4>驗證碼</h4>
