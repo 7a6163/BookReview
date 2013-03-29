@@ -22,22 +22,96 @@
 <div class="container">
     <div class="row-fluid">
         <div class="span3">
-            <img src="~/Content/_img/book.png" />
+            <img src="@Url.Content(string.Format("~/Content/books/{0}.jpg", Model.Id))" />
         </div>
         <div class="span5">
-            <h3>行李箱的男孩</h3>
+            <h3>@Model.Name</h3>
             <ul style="list-style: none; margin-left: 0; font-size: 16px">
-                <li style="margin-bottom: 2px">作者：琳恩‧卡波布<span class="divider">/</span>安奈特‧斐瑞斯</li>
-                <li style="margin-bottom: 2px">譯者：顏湘如</li>
-                <li style="margin-bottom: 2px">出版社：馬可孛羅文化事業股份有限公司</li>
-                <li style="margin-bottom: 2px">出版日期：2013/01/03</li>
-                <li style="margin-bottom: 2px">語言：中文<span class="divider">/</span>繁體</li>
-                <li style="margin-bottom: 2px">裝訂：平裝</li>
-                <li style="margin-bottom: 2px">定價：NT300</li>
-                <li style="margin-bottom: 2px">ISBN：9789866319570</li>
+                <li style="margin-bottom: 2px">作者：@Model.Author@*琳恩‧卡波布*@<span class="divider">/</span>安奈特‧斐瑞斯</li>
+                @*<li style="margin-bottom: 2px">譯者：顏湘如</li>*@
+                <li style="margin-bottom: 2px">出版社：@Model.Publisher@*馬可孛羅文化事業股份有限公司*@</li>
+                <li style="margin-bottom: 2px">出版日期：@Model.PublishDate@*2013/01/03*@</li>
+                <li style="margin-bottom: 2px">語言：@Model.Language@*中文<span class="divider">/</span>繁體*@</li>
+                <li style="margin-bottom: 2px">裝訂：@Model.Binding@*平裝*@</li>
+                <li style="margin-bottom: 2px">定價：NT@(Model.Price)@*300*@</li>
+                <li style="margin-bottom: 2px">ISBN：@Model.ISBN@*9789866319570*@</li>
             </ul>
         </div>
     </div>
+</div>
+
+<div class="container">
+    <h3 style="color: #8caf39">使用者評論</h3>
+    <div class="row">
+        <div class="span12">
+            <div style="padding: 8px 5px 0px 8px">
+                <div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="span12">
+            <div>
+                <a href="#">
+                    <img src="@Url.Content("~/Content/_img/book.png")" style="width: 64px; height: 64px;float: left" />
+                </a>
+            </div>
+            <div style="float: left; max-width: 89%; width: 100%; padding-left: 15px">
+                <span style="line-height: 1.4em; font-size: 1em"><a href="#" style="color: #3d3d3d"><strong>鄭偉城</strong></a></span><span style="line-height: 1.4em; font-size: 1em; color: #666"> - 2012年11月27日</span>
+                <div style="margin-top: 5px; margin-bottom: 4px">
+                    <div class="rateit" data-rateit-value="5" data-rateit-ispreset="true" data-rateit-readonly="true" title="評分：4.0 顆星  (不錯)"></div>
+                    <h4 style="display: inline; font-size: 13px; padding-top: 5px; color: #414242; padding-bottom: 0">很好用</h4>
+                </div>
+                <p style="color: #666; font-size: 1em; line-height: 1.4em">很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！</p>
+                <div class="row">
+                    <a href="#" class="pull-right"><strong style="color: #666">垃圾評論</strong></a>
+                </div>
+            </div>
+        </div>
+        <div class="span12">
+            <div>
+                <a href="#">
+                    <img src="@Url.Content("~/Content/_img/book.png")" style="width: 64px; height: 64px;float: left" />
+                </a>
+            </div>
+            <div style="float: left; max-width: 89%; width: 100%; padding-left: 15px">
+                <span style="line-height: 1.4em; font-size: 1em"><a href="#" style="color: #3d3d3d"><strong>鄭偉城</strong></a></span><span style="line-height: 1.4em; font-size: 1em; color: #666"> - 2012年11月27日</span>
+                <div style="margin-top: 5px; margin-bottom: 4px">
+                    <div class="rateit" data-rateit-value="5" data-rateit-ispreset="true" data-rateit-readonly="true" title="評分：4.0 顆星  (不錯)"></div>
+                    <h4 style="display: inline; font-size: 13px; padding-top: 5px; color: #414242; padding-bottom: 0">很好用</h4>
+                </div>
+                <p style="color: #666; font-size: 1em; line-height: 1.4em">很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！</p>
+                <div class="row">
+                    <a href="#" class="pull-right"><strong style="color: #666">垃圾評論</strong></a>
+                </div>
+            </div>
+        </div>
+        <div class="span12">
+            <div>
+                <a href="#">
+                    <img src="@Url.Content("~/Content/_img/book.png")" style="width: 64px; height: 64px;float: left" />
+                </a>
+            </div>
+            <div style="float: left; max-width: 89%; width: 100%; padding-left: 15px">
+                <span style="line-height: 1.4em; font-size: 1em"><a href="#" style="color: #3d3d3d"><strong>鄭偉城</strong></a></span><span style="line-height: 1.4em; font-size: 1em; color: #666"> - 2012年11月27日</span>
+                <div style="margin-top: 5px; margin-bottom: 4px">
+                    <div class="rateit" data-rateit-value="5" data-rateit-ispreset="true" data-rateit-readonly="true" title="評分：4.0 顆星  (不錯)"></div>
+                    <h4 style="display: inline; font-size: 13px; padding-top: 5px; color: #414242; padding-bottom: 0">很好用</h4>
+                </div>
+                <p style="color: #666; font-size: 1em; line-height: 1.4em">很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！很順暢，分類很容易！</p>
+                <div class="row">
+                    <a href="#" class="pull-right"><strong style="color: #666">垃圾評論</strong></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr />
 </div>
 
 @*<h2>BookDetail</h2>
@@ -72,3 +146,7 @@
 {
     @Html.EditorFor(m => m.BookComment)
 }*@
+
+<dl id="commont">
+    @Html.DisplayFor(m => m.ListBookComment)
+</dl>

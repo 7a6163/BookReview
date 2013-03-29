@@ -61,16 +61,23 @@
             <div class="container">
                 <div class="nav-collapse collapse">
                     @{
-                        bool isShowLoginBar = ViewData["IsShowLoginBar"] == null || (bool) ViewData["IsShowLoginBar"];
+                        bool isShowLoginBar = ViewData["IsShowLoginBar"] == null || (bool)ViewData["IsShowLoginBar"];
                     }
                     @if (isShowLoginBar)
                     { 
                         <div class="row">
                             <div class="span2 offset10">
                                 <div class="pull-right">
-                                    <a href="#">登入</a>
-                                    <span class="divider">/</span>
-                                    @Html.ActionLink("加入會員", "Register", "Account")
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        @Html.ActionLink("登出", "LogOff", "Account")
+                                    }
+                                    else
+                                    {   
+                                        @Html.ActionLink("登入", "Login", "Account")
+                                        <span class="divider">/</span>
+                                        @Html.ActionLink("加入會員", "Register", "Account")
+                                    }
                                 </div>
                                 @*登入 / 加入會員*@
                             </div>
@@ -78,7 +85,8 @@
                     }
                     <div class="row">
                         <div class="brand">
-                            <a href="@Url.Action("Index", "Home")"><img src="~/Content/_img/logo.png" /></a>
+                            <a href="@Url.Action("Index", "Home")">
+                                <img src="~/Content/_img/logo.png" /></a>
                         </div>
                         @if (isShowLoginBar)
                         {

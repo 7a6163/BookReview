@@ -50,12 +50,28 @@ namespace BookReview.Controllers
 
             //model.listBookBox = qlistBookBox.ToList();
 
-            var listBookBox = _bookEntities.Books.OrderByDescending(b => b.UpdateDate).Take(10).ToList();
             var model = new HomeIndex();
-            model.ListBookBox = new List<BookBox>();
+            model.ListMainBooks = new List<BookBox>();
+            model.ListPopularBooks = new List<BookSmallBox>();
+            model.ListArticleBooks = new List<BookSmallBox>();
+            model.ListNonarticleBooks = new List<BookSmallBox>();
 
             Mapper.CreateMap<Books, BookBox>();
-            Mapper.Map(listBookBox, model.ListBookBox);
+
+            var listBookBox = _bookEntities.Books.OrderByDescending(b => b.UpdateDate).Take(4).ToList();
+            Mapper.Map(listBookBox, model.ListMainBooks);
+
+            Mapper.Reset();
+            Mapper.CreateMap<Books, BookSmallBox>();
+
+            listBookBox = _bookEntities.Books.OrderByDescending(b => b.UpdateDate).Take(5).ToList();
+            Mapper.Map(listBookBox, model.ListPopularBooks);
+
+            listBookBox = _bookEntities.Books.Where(b => b.Class.Equals("文學")).OrderByDescending(b => b.UpdateDate).Take(5).ToList();
+            Mapper.Map(listBookBox, model.ListArticleBooks);
+
+            listBookBox = _bookEntities.Books.Where(b => !b.Class.Equals("文學")).OrderByDescending(b => b.UpdateDate).Take(5).ToList();
+            Mapper.Map(listBookBox, model.ListNonarticleBooks);
 
             return View(model);
         }
@@ -78,7 +94,7 @@ namespace BookReview.Controllers
         public ActionResult ChangeLanguage(string language, string returnUrl)
         {
             if (!string.IsNullOrWhiteSpace(language))
-                Response.AppendCookie(new HttpCookie("lang", language){ HttpOnly = true });
+                Response.AppendCookie(new HttpCookie("lang", language) { HttpOnly = true });
 
             return RedirectToLocal(returnUrl);
         }

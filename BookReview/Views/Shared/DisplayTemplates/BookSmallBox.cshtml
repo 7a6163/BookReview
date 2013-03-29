@@ -1,0 +1,6 @@
+﻿@model BookReview.Models.TemplateModels.BookSmallBox
+
+<li>
+    <a href="@Url.Content(string.Format("~/Book/BookDetail?id={0}", Model.Id))" class="thumbnail">
+        <img src="~/Content/books/@(Model.Id).jpg" /></a>
+</li>

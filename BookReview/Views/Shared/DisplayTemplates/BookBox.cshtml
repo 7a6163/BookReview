@@ -1,8 +1,6 @@
 ﻿@model BookReview.Models.TemplateModels.BookBox
-<a href="@Url.Content(string.Format("~/Book/BookDetail?id={0}", Model.Id))">
-    <li style="display: inline-block; min-height: 150px; width: 40%; float: left; margin: 10px; text-align: center; padding: 10px" class="thumbnail">
 
-        <img src="@Url.Content("~/Content/images/icon-book.png")" alt="Book Icon" />
-        <span>@Html.DisplayTextFor(m => m.Name)</span>
-    </li>
-</a>
+<li class="span3">
+    <a href="@Url.Content(string.Format("~/Book/BookDetail?id={0}", Model.Id))" class="thumbnail">
+        <img src="~/Content/books/@(Model.Id).jpg" /></a>
+</li>

@@ -82,6 +82,9 @@ namespace BookReview.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            if (User.Identity.IsAuthenticated)
+                return RedirectToAction("Index", "Home");
+
             ViewData["IsShowLoginBar"] = false;
             return View();
         }
@@ -96,7 +99,7 @@ namespace BookReview.Controllers
         {
             ViewData["IsShowLoginBar"] = false;
 
-            if (!model.CheckCode.Equals(Request.Cookies["CheckCode"]))
+            if (!model.CheckCode.ToUpper().Equals(Request.Cookies["CheckCode"].Value))
                 ModelState.AddModelError("CheckCode", "驗證碼錯誤");
 
             if (ModelState.IsValid)

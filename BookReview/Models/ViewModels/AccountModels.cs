@@ -58,7 +58,7 @@ namespace BookReview.Models.ViewModels
     }
 
     public class LoginModel
-    {
+    {   
         [Required]
         [Display(ResourceType = typeof(Resource), Name = "Email")]
         public string UserName { get; set; }
@@ -74,26 +74,28 @@ namespace BookReview.Models.ViewModels
 
     public class RegisterModel
     {
-        [Required]
+        [Required(ErrorMessage = "請輸入電子郵件信箱")]
         [Display(ResourceType = typeof(Resource), Name = "Email")]
+        [RegularExpression(@"^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4})*$", ErrorMessage = "請輸入正確的電子郵件格式")]
         public string UserName { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "{0} 長度至少必須為 {2} 個字元。", MinimumLength = 6)]
+        [Required(ErrorMessage = "請輸入密碼")]
+        [StringLength(100, ErrorMessage = "密碼長度至少必須為 {2} 個字元。", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(ResourceType = typeof(Resource), Name = "Password")]
         public string Password { get; set; }
 
+        [Required(ErrorMessage = "請輸入驗證密碼")]
         [DataType(DataType.Password)]
         [Display(ResourceType = typeof(Resource), Name = "PasswordConfirm")]
-        [Compare("Password", ErrorMessageResourceType = typeof(Resource), ErrorMessageResourceName = "PasswordConfirmFailed")]
+        [Compare("Password", ErrorMessage = "密碼驗證不正確")]
         public string ConfirmPassword { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "請輸入名字")]
         [Display(ResourceType = typeof(Resource), Name = "Nickname")]
         public string Name { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "請輸入驗證碼")]
         [Display(Name = "驗證碼")]
         public string CheckCode { get; set; }
     }

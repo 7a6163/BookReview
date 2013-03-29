@@ -9,32 +9,31 @@
 <div class="container">
     <h3 style="color: #8caf39">歡迎加入會員</h3>
 </div>
-@Html.AntiForgeryToken()
-@Html.ValidationSummary()
-@using (Html.BeginForm())
+@using (Html.BeginForm("Register", "Account"))
 {
+    @Html.AntiForgeryToken()
     <div class="container">
         <div class="row-fluid" style="margin-bottom: 20px">
             <div class="span6">
                 <div class="row-fluid">
                     <h4>告訴我們你是誰</h4>
-                    @Html.TextBoxFor(m => m.Name, new { @class = "span10" })
-                    <p class="text-error">@Html.ValidationMessageFor(m => m.Name)</p>
+                    @Html.TextBoxFor(m => m.Name, new { @class = "span9" })
+                    <small class="text-error">@Html.ValidationMessageFor(m => m.Name)</small>
                 </div>
                 <div class="row-fluid">
                     <h4>常用的電子郵件<small>(我們認真想要推薦好書給你)</small></h4>
-                    @Html.TextBoxFor(m => m.UserName, new { @class = "span10" })
-                    <p class="text-error">@Html.ValidationMessageFor(m => m.UserName)</p>
+                    @Html.TextBoxFor(m => m.UserName, new { @class = "span9" })
+                    <small class="text-error">@Html.ValidationMessageFor(m => m.UserName)</small>
                 </div>
                 <div class="row-fluid">
                     <h4>最愛密碼</h4>
-                    @Html.PasswordFor(m => m.Password, new { @class = "span10" })
-                    <p class="text-error">@Html.ValidationMessageFor(m => m.Password)</p>
+                    @Html.PasswordFor(m => m.Password, new { @class = "span9" })
+                    <small class="text-error">@Html.ValidationMessageFor(m => m.Password)</small>
                 </div>
                 <div class="row-fluid">
                     <h4>最愛密碼確認</h4>
-                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "span10" })
-                    <p class="text-error">@Html.ValidationMessageFor(m => m.ConfirmPassword)</p>
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "span9" })
+                    <small class="text-error">@Html.ValidationMessageFor(m => m.ConfirmPassword)</small>
                 </div>
                 <div class="row-fluid">
                     <h4>驗證碼</h4>
@@ -44,8 +43,8 @@
                     <div class="span5">
                         難辨識？我們換一個吧
                     </div>
-                    @Html.TextBoxFor(m => m.CheckCode, new { @class = "span10" })
-                    @Html.ValidationMessageFor(m => m.CheckCode)
+                    @Html.TextBoxFor(m => m.CheckCode, new { @class = "span9" })
+                    <small class="text-error">@Html.ValidationMessageFor(m => m.CheckCode)</small>
                 </div>
                 <div class="row-fluid">
                     @Html.CheckBox("agree", false)
@@ -63,11 +62,22 @@
             </div>
         </div>
         <div class="row">
-            <input type="submit" class="btn btn-large btn-success span2" value="註冊去" />
+            <div class="span12">
+                <input id="submit" type="submit" class="btn btn-large btn-success span2" value="註冊去" />
+            </div>
         </div>
     </div>
 }
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(function() {
+            $("#submit").prop("disabled", !$("#agree").prop("checked"));
+
+            $("#agree").change(function() {
+                $("#submit").prop("disabled", !$(this).prop("checked"));
+            });
+        });
+    </script>
 }
